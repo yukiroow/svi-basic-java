@@ -1,0 +1,7 @@
+.idea/
+src/main/resources/META-INF
+docs/
+target
+svi-basic-java.iml
+out/
+.vscode/
