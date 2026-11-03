@@ -1,6 +1,7 @@
 package com.svi;
 
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 /**
  * This Class contains the main entry point of this application.
@@ -54,7 +55,7 @@ public class Main {
      * @return the User with the given fields
      */
     static Account createUserAccount(Scanner keyboardInput) {
-        String tempFirstName, tempLastName, tempUsername, tempPassword, tempType;
+        String tempFirstName, tempLastName, tempUsername, tempEmail, tempContact, tempPassword, tempType;
         System.out.println("---------------------------------------");
         System.out.printf("%-20s", "Enter First Name:");
         tempFirstName = readStringInput(keyboardInput);
@@ -62,11 +63,47 @@ public class Main {
         tempLastName = readStringInput(keyboardInput);
         System.out.printf("%-20s", "Enter Username:");
         tempUsername = readStringInput(keyboardInput);
+        tempEmail = readEmail(keyboardInput);
+        tempContact = readContact(keyboardInput);
+        tempType = readUserType(keyboardInput);
         System.out.printf("%-20s", "Enter Password:");
         tempPassword = readStringInput(keyboardInput);
-        tempType = readUserType(keyboardInput);
         System.out.println("USER CREATED!");
-        return new Account(new Person(tempFirstName, tempLastName), new Credentials(tempUsername, tempPassword), tempType);
+        return new Account(new Person(tempFirstName, tempLastName, tempEmail, tempContact), new Credentials(tempUsername, tempPassword), tempType);
+    }
+
+    static String readEmail(Scanner keyboardInput) {
+        Pattern emailRegex = Pattern.compile("^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$");
+        while (true) {
+            System.out.printf("%-20s", "Enter Email:");
+            String email = readStringInput(keyboardInput);
+            if (email.trim().isBlank()) {
+                System.out.println("Enter a valid email!");
+                continue;
+            }
+            if (!emailRegex.matcher(email).matches()) {
+                System.out.println("Enter a valid email!");
+                continue;
+            }
+            return email;
+        }
+    }
+
+    static String readContact(Scanner keyboardInput) {
+        Pattern numRegex = Pattern.compile("^09\\d{9}$");
+        while (true) {
+            System.out.printf("%-20s", "Enter Contact No:");
+            String num = readStringInput(keyboardInput);
+            if (num.trim().isBlank()) {
+                System.out.println("Enter a valid contact number (Ex. 09123456789)!");
+                continue;
+            }
+            if (!numRegex.matcher(num).matches()) {
+                System.out.println("Enter a valid contact number (Ex. 09123456789)!");
+                continue;
+            }
+            return num;
+        }
     }
 
     static String readUserType(Scanner keyboardInput) {
@@ -94,6 +131,8 @@ public class Main {
         user.setFirstName(readStringInput(keyboardInput));
         System.out.printf("%-20s", "Enter Last Name:");
         user.setLastName(readStringInput(keyboardInput));
+        user.setEmail(readEmail(keyboardInput));
+        user.setContact(readContact(keyboardInput));
         System.out.printf("%-20s", "Enter Password:");
         user.setPassword(readStringInput(keyboardInput));
         user.setType(readUserType(keyboardInput));
@@ -110,6 +149,8 @@ public class Main {
         System.out.println("USER ACCOUNT DETAILS");
         System.out.printf("%-15s%s%n", "First Name:", user.getFirstName());
         System.out.printf("%-15s%s%n", "Last Name:", user.getLastName());
+        System.out.printf("%-15s%s%n", "Contact No:", user.getContact());
+        System.out.printf("%-15s%s%n", "Email:", user.getEmail());
         System.out.printf("%-15s%s%n", "User Type:", user.getType());
         System.out.printf("%-15s%s%n", "Username:", user.getUsername());
         System.out.printf("%-15s%s%n", "Password:", user.getPassword());
