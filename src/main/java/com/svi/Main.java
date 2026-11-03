@@ -11,8 +11,15 @@ public class Main {
             switch (menuOption) {
                 case 1 -> {
                     user = createUser(keyboardInput);
+                    System.out.println("USER CREATED!");
                 }
                 case 2 -> {
+                    if (user == null) {
+                        System.out.println("Please create a User first!");
+                        continue;
+                    }
+                    updateUser(keyboardInput, user);
+                    System.out.println("USER UPDATED!");
                 }
                 case 3 -> {
                     if (user == null) {
@@ -32,15 +39,24 @@ public class Main {
 
     static User createUser(Scanner keyboardInput) {
         String tempFirstName, tempLastName, tempUsername, tempPassword;
-        System.out.printf("%-20s","Enter First Name:");
+        System.out.printf("%-20s", "Enter First Name:");
         tempFirstName = readStringInput(keyboardInput);
-        System.out.printf("%-20s","Enter Last Name:");
+        System.out.printf("%-20s", "Enter Last Name:");
         tempLastName = readStringInput(keyboardInput);
-        System.out.printf("%-20s","Enter Username:");
+        System.out.printf("%-20s", "Enter Username:");
         tempUsername = readStringInput(keyboardInput);
-        System.out.printf("%-20s","Enter Password:");
+        System.out.printf("%-20s", "Enter Password:");
         tempPassword = readStringInput(keyboardInput);
         return new User(tempFirstName, tempLastName, tempUsername, tempPassword);
+    }
+
+    static void updateUser(Scanner keyboardInput, User user) {
+        System.out.printf("%-20s", "Enter First Name:");
+        user.setFirstName(readStringInput(keyboardInput));
+        System.out.printf("%-20s", "Enter Last Name:");
+        user.setLastName(readStringInput(keyboardInput));
+        System.out.printf("%-20s", "Enter Password:");
+        user.setPassword(readStringInput(keyboardInput));
     }
 
     static void printUserDetails(User user) {
