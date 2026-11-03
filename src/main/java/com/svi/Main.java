@@ -7,6 +7,7 @@ public class Main {
         User user = null;
         Scanner keyboardInput = new Scanner(System.in);
         while (true) {
+            printMenu();
             int menuOption = readMenuOption(keyboardInput);
             switch (menuOption) {
                 case 1 -> {
@@ -67,8 +68,15 @@ public class Main {
         System.out.printf("%-15s%s%n", "Password:", user.getPassword());
     }
 
+    static void printMenu() {
+        System.out.printf("%6s  %s%n", "i.", "Create an Account");
+        System.out.printf("%6s  %s%n", "ii.", "Update an Account");
+        System.out.printf("%6s  %s%n", "iii.", "Display Account");
+        System.out.printf("%6s  %s%n", "iv.", "Exit");
+    }
+
     static String readStringInput(Scanner keyboardInput) {
-        String input = "";
+        String input;
         while (true) {
             input = keyboardInput.nextLine().trim();
             if (input.isBlank()) {
@@ -81,10 +89,6 @@ public class Main {
     }
 
     static int readMenuOption(Scanner keyboardInput) {
-        System.out.printf("%6s  %s%n", "i.", "Create an Account");
-        System.out.printf("%6s  %s%n", "ii.", "Update an Account");
-        System.out.printf("%6s  %s%n", "iii.", "Display Account");
-        System.out.printf("%6s  %s%n", "iv.", "Exit");
         while (true) {
             System.out.print("(1-4) > ");
             try {
