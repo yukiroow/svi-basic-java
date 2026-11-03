@@ -1,9 +1,21 @@
 package com.svi;
 
+/**
+ * This class represents a User Account's Credential pair.
+ *
+ * @author Harry Dominguez
+ * @since 2.0
+ */
 public class Credentials {
     private final String username;
     private String password;
 
+    /**
+     * Construct a Credential from the given username and password.
+     *
+     * @param username the given username String
+     * @param password the given password String
+     */
     public Credentials(String username, String password) {
         this.username = username;
         this.password = password;

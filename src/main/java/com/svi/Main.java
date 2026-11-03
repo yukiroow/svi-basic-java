@@ -72,6 +72,16 @@ public class Main {
         return new Account(new Person(tempFirstName, tempLastName, tempEmail, tempContact), new Credentials(tempUsername, tempPassword), tempType);
     }
 
+    /**
+     * This prompts and captures an email String from user input.
+     *
+     * <p>
+     * Includes regex validation for email format.
+     * </p>
+     *
+     * @param keyboardInput the Scanner object for user input
+     * @return the email String
+     */
     static String readEmail(Scanner keyboardInput) {
         Pattern emailRegex = Pattern.compile("^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$");
         while (true) {
@@ -89,6 +99,16 @@ public class Main {
         }
     }
 
+    /**
+     * This prompts and captures a contact number String from user input.
+     *
+     * <p>
+     * Includes regex validation for PH contact number format (09).
+     * </p>
+     *
+     * @param keyboardInput the Scanner object for user input
+     * @return the contact number String
+     */
     static String readContact(Scanner keyboardInput) {
         Pattern numRegex = Pattern.compile("^09\\d{9}$");
         while (true) {
@@ -106,6 +126,12 @@ public class Main {
         }
     }
 
+    /**
+     * This prompts and captures the user type String from user input.
+     *
+     * @param keyboardInput the Scanner object for user input
+     * @return {@code "ADMIN"} or {@code "USER"}
+     */
     static String readUserType(Scanner keyboardInput) {
         String tempType;
         while (true) {
