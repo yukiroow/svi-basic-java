@@ -10,17 +10,13 @@ public class Main {
             printMenu();
             int menuOption = readMenuOption(keyboardInput);
             switch (menuOption) {
-                case 1 -> {
-                    user = createUser(keyboardInput);
-                    System.out.println("USER CREATED!");
-                }
+                case 1 -> user = createUser(keyboardInput);
                 case 2 -> {
                     if (user == null) {
                         System.out.println("Please create a User first!");
                         continue;
                     }
                     updateUser(keyboardInput, user);
-                    System.out.println("USER UPDATED!");
                 }
                 case 3 -> {
                     if (user == null) {
@@ -33,13 +29,13 @@ public class Main {
                     System.out.println("Bye bye!");
                     System.exit(0);
                 }
-                default -> System.out.println("Invalid entry! Please select the proper option from the menu (1-4).");
             }
         }
     }
 
     static User createUser(Scanner keyboardInput) {
         String tempFirstName, tempLastName, tempUsername, tempPassword;
+        System.out.println("---------------------------------------");
         System.out.printf("%-20s", "Enter First Name:");
         tempFirstName = readStringInput(keyboardInput);
         System.out.printf("%-20s", "Enter Last Name:");
@@ -48,19 +44,23 @@ public class Main {
         tempUsername = readStringInput(keyboardInput);
         System.out.printf("%-20s", "Enter Password:");
         tempPassword = readStringInput(keyboardInput);
+        System.out.println("USER CREATED!");
         return new User(tempFirstName, tempLastName, tempUsername, tempPassword);
     }
 
     static void updateUser(Scanner keyboardInput, User user) {
+        System.out.println("---------------------------------------");
         System.out.printf("%-20s", "Enter First Name:");
         user.setFirstName(readStringInput(keyboardInput));
         System.out.printf("%-20s", "Enter Last Name:");
         user.setLastName(readStringInput(keyboardInput));
         System.out.printf("%-20s", "Enter Password:");
         user.setPassword(readStringInput(keyboardInput));
+        System.out.println("USER UPDATED!");
     }
 
     static void printUserDetails(User user) {
+        System.out.println("---------------------------------------");
         System.out.println("USER DETAILS");
         System.out.printf("%-15s%s%n", "First Name:", user.getFirstName());
         System.out.printf("%-15s%s%n", "Last Name:", user.getLastName());
@@ -69,10 +69,12 @@ public class Main {
     }
 
     static void printMenu() {
+        System.out.println("---------------------------------------");
         System.out.printf("%6s  %s%n", "i.", "Create an Account");
         System.out.printf("%6s  %s%n", "ii.", "Update an Account");
         System.out.printf("%6s  %s%n", "iii.", "Display Account");
         System.out.printf("%6s  %s%n", "iv.", "Exit");
+        System.out.println("---------------------------------------");
     }
 
     static String readStringInput(Scanner keyboardInput) {
@@ -93,7 +95,8 @@ public class Main {
             System.out.print("(1-4) > ");
             try {
                 int option = Integer.parseInt(keyboardInput.nextLine().trim());
-                if (option < 1 || option > 5) {
+                if (option < 1 || option > 4) {
+                    System.out.println("Invalid entry! Please select the proper option from the menu (1-4).");
                     continue;
                 }
                 return option;
