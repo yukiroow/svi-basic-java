@@ -18,23 +18,23 @@ public class Main {
      * </p>
      */
     static void main() {
-        User user = null;
+        Account user = null;
         Scanner keyboardInput = new Scanner(System.in);
         while (true) {
             printMenu();
             int menuOption = readMenuOption(keyboardInput);
             switch (menuOption) {
-                case 1 -> user = createUser(keyboardInput);
+                case 1 -> user = createUserAccount(keyboardInput);
                 case 2 -> {
                     if (user == null) {
-                        System.out.println("Please create a User first!");
+                        System.out.println("Please create a User Account first!");
                         continue;
                     }
-                    updateUser(keyboardInput, user);
+                    updateUserAccount(keyboardInput, user);
                 }
                 case 3 -> {
                     if (user == null) {
-                        System.out.println("Please create a User first!");
+                        System.out.println("Please create a User Account first!");
                         continue;
                     }
                     printUserDetails(user);
@@ -53,8 +53,8 @@ public class Main {
      * @param keyboardInput the Scanner object for user input
      * @return the User with the given fields
      */
-    static User createUser(Scanner keyboardInput) {
-        String tempFirstName, tempLastName, tempUsername, tempPassword;
+    static Account createUserAccount(Scanner keyboardInput) {
+        String tempFirstName, tempLastName, tempUsername, tempPassword, tempType;
         System.out.println("---------------------------------------");
         System.out.printf("%-20s", "Enter First Name:");
         tempFirstName = readStringInput(keyboardInput);
@@ -64,17 +64,20 @@ public class Main {
         tempUsername = readStringInput(keyboardInput);
         System.out.printf("%-20s", "Enter Password:");
         tempPassword = readStringInput(keyboardInput);
+        System.out.printf("%-20s%n", "Select User Type");
+        System.out.printf("%-20s", "(Admin, User):");
+        tempType = readStringInput(keyboardInput);
         System.out.println("USER CREATED!");
-        return new User(tempFirstName, tempLastName, tempUsername, tempPassword);
+        return new Account(new Person(tempFirstName, tempLastName), new Credentials(tempUsername, tempPassword), tempType);
     }
 
     /**
-     * This prompts and captures the required fields for updating the given User object.
+     * This prompts and captures the required fields for updating the given Account object.
      *
      * @param keyboardInput the Scanner object for user input
      * @param user          the User object to be updated
      */
-    static void updateUser(Scanner keyboardInput, User user) {
+    static void updateUserAccount(Scanner keyboardInput, Account user) {
         System.out.println("---------------------------------------");
         System.out.printf("%-20s", "Enter First Name:");
         user.setFirstName(readStringInput(keyboardInput));
@@ -82,6 +85,9 @@ public class Main {
         user.setLastName(readStringInput(keyboardInput));
         System.out.printf("%-20s", "Enter Password:");
         user.setPassword(readStringInput(keyboardInput));
+        System.out.printf("%-20s%n", "Select User Type");
+        System.out.printf("%-20s", "(Admin, User):");
+        user.setType(readStringInput(keyboardInput));
         System.out.println("USER UPDATED!");
     }
 
@@ -90,11 +96,12 @@ public class Main {
      *
      * @param user the User object to be displayed
      */
-    static void printUserDetails(User user) {
+    static void printUserDetails(Account user) {
         System.out.println("---------------------------------------");
-        System.out.println("USER DETAILS");
+        System.out.println("USER ACCOUNT DETAILS");
         System.out.printf("%-15s%s%n", "First Name:", user.getFirstName());
         System.out.printf("%-15s%s%n", "Last Name:", user.getLastName());
+        System.out.printf("%-15s%s%n", "User Type:", user.getType());
         System.out.printf("%-15s%s%n", "Username:", user.getUsername());
         System.out.printf("%-15s%s%n", "Password:", user.getPassword());
     }
