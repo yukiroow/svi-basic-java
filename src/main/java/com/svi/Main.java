@@ -5,12 +5,12 @@ import java.util.Scanner;
 public class Main {
     static void main() {
         User user = null;
-        String tempFirstName, tempLastName, tempUsername, tempPassword;
         Scanner keyboardInput = new Scanner(System.in);
         while (true) {
             int menuOption = readMenuOption(keyboardInput);
             switch (menuOption) {
                 case 1 -> {
+                    user = createUser(keyboardInput);
                 }
                 case 2 -> {
                 }
@@ -19,7 +19,7 @@ public class Main {
                         System.out.println("Please create a User first!");
                         continue;
                     }
-                    printUserDetails(new User("Harry", "Dominguez", "yukiro1", "qwerty"));
+                    printUserDetails(user);
                 }
                 case 4 -> {
                     System.out.println("Bye bye!");
@@ -28,6 +28,19 @@ public class Main {
                 default -> System.out.println("Invalid entry! Please select the proper option from the menu (1-4).");
             }
         }
+    }
+
+    static User createUser(Scanner keyboardInput) {
+        String tempFirstName, tempLastName, tempUsername, tempPassword;
+        System.out.printf("%-20s","Enter First Name:");
+        tempFirstName = readStringInput(keyboardInput);
+        System.out.printf("%-20s","Enter Last Name:");
+        tempLastName = readStringInput(keyboardInput);
+        System.out.printf("%-20s","Enter Username:");
+        tempUsername = readStringInput(keyboardInput);
+        System.out.printf("%-20s","Enter Password:");
+        tempPassword = readStringInput(keyboardInput);
+        return new User(tempFirstName, tempLastName, tempUsername, tempPassword);
     }
 
     static void printUserDetails(User user) {
