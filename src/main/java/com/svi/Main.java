@@ -16,10 +16,10 @@ public class Main {
                 case 3 -> {
                 }
                 case 4 -> {
+                    System.out.println("Bye bye!");
+                    System.exit(0);
                 }
-                default -> {
-                    System.out.println("Invalid entry! Please select the proper option from the menu (1-4).");
-                }
+                default -> System.out.println("Invalid entry! Please select the proper option from the menu (1-4).");
             }
         }
     }
