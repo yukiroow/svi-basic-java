@@ -2,7 +2,21 @@ package com.svi;
 
 import java.util.Scanner;
 
+/**
+ * This Class contains the main entry point of this application.
+ *
+ * @author Harry Dominguez
+ * @since 1.0
+ */
 public class Main {
+
+    /**
+     * This is the main entry point of this application.
+     *
+     * <p>
+     * This contains the main loop of the application for the menu option selection.
+     * </p>
+     */
     static void main() {
         User user = null;
         Scanner keyboardInput = new Scanner(System.in);
@@ -33,6 +47,12 @@ public class Main {
         }
     }
 
+    /**
+     * This prompts and captures the required fields for creating a User object.
+     *
+     * @param keyboardInput the Scanner object for user input
+     * @return the User with the given fields
+     */
     static User createUser(Scanner keyboardInput) {
         String tempFirstName, tempLastName, tempUsername, tempPassword;
         System.out.println("---------------------------------------");
@@ -48,6 +68,12 @@ public class Main {
         return new User(tempFirstName, tempLastName, tempUsername, tempPassword);
     }
 
+    /**
+     * This prompts and captures the required fields for updating the given User object.
+     *
+     * @param keyboardInput the Scanner object for user input
+     * @param user          the User object to be updated
+     */
     static void updateUser(Scanner keyboardInput, User user) {
         System.out.println("---------------------------------------");
         System.out.printf("%-20s", "Enter First Name:");
@@ -59,6 +85,11 @@ public class Main {
         System.out.println("USER UPDATED!");
     }
 
+    /**
+     * This displays a formatted version of the given User object's fields.
+     *
+     * @param user the User object to be displayed
+     */
     static void printUserDetails(User user) {
         System.out.println("---------------------------------------");
         System.out.println("USER DETAILS");
@@ -68,6 +99,9 @@ public class Main {
         System.out.printf("%-15s%s%n", "Password:", user.getPassword());
     }
 
+    /**
+     * This displays the menu options for the application.
+     */
     static void printMenu() {
         System.out.println("---------------------------------------");
         System.out.printf("%6s  %s%n", "i.", "Create an Account");
@@ -77,6 +111,16 @@ public class Main {
         System.out.println("---------------------------------------");
     }
 
+    /**
+     * This reads a String input using the given Scanner.
+     *
+     * <p>
+     * Includes validation for empty input.
+     * </p>
+     *
+     * @param keyboardInput the given Scanner object for user input
+     * @return the input String
+     */
     static String readStringInput(Scanner keyboardInput) {
         String input;
         while (true) {
@@ -90,6 +134,16 @@ public class Main {
         return input;
     }
 
+    /**
+     * This reads the input for the Menu options.
+     *
+     * <p>
+     * Includes validation for empty input and out of range input.
+     * </p>
+     *
+     * @param keyboardInput the Scanner object for user input
+     * @return the integer option
+     */
     static int readMenuOption(Scanner keyboardInput) {
         while (true) {
             System.out.print("(1-4) > ");
