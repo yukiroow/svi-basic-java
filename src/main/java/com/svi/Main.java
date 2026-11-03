@@ -15,11 +15,11 @@ public class Main {
                 case 2 -> {
                 }
                 case 3 -> {
-                    if(user == null) {
+                    if (user == null) {
                         System.out.println("Please create a User first!");
                         continue;
                     }
-                    printUserDetails(new User("Harry","Dominguez","yukiro1","qwerty"));
+                    printUserDetails(new User("Harry", "Dominguez", "yukiro1", "qwerty"));
                 }
                 case 4 -> {
                     System.out.println("Bye bye!");
@@ -36,6 +36,19 @@ public class Main {
         System.out.printf("%-15s%s%n", "Last Name:", user.getLastName());
         System.out.printf("%-15s%s%n", "Username:", user.getUsername());
         System.out.printf("%-15s%s%n", "Password:", user.getPassword());
+    }
+
+    static String readStringInput(Scanner keyboardInput) {
+        String input = "";
+        while (true) {
+            input = keyboardInput.nextLine().trim();
+            if (input.isBlank()) {
+                System.out.println("Please enter a value!");
+                continue;
+            }
+            break;
+        }
+        return input;
     }
 
     static int readMenuOption(Scanner keyboardInput) {
