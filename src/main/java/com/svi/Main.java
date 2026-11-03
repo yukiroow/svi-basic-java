@@ -64,11 +64,22 @@ public class Main {
         tempUsername = readStringInput(keyboardInput);
         System.out.printf("%-20s", "Enter Password:");
         tempPassword = readStringInput(keyboardInput);
-        System.out.printf("%-20s%n", "Select User Type");
-        System.out.printf("%-20s", "(Admin, User):");
-        tempType = readStringInput(keyboardInput);
+        tempType = readUserType(keyboardInput);
         System.out.println("USER CREATED!");
         return new Account(new Person(tempFirstName, tempLastName), new Credentials(tempUsername, tempPassword), tempType);
+    }
+
+    static String readUserType(Scanner keyboardInput) {
+        String tempType;
+        while (true) {
+            System.out.printf("%-20s%n", "Select User Type");
+            System.out.printf("%-20s", "(Admin, User):");
+            tempType = readStringInput(keyboardInput);
+            if (tempType.equalsIgnoreCase("admin") || tempType.equalsIgnoreCase("user")) {
+                return tempType.toUpperCase();
+            }
+            System.out.println("Please input a valid option!");
+        }
     }
 
     /**
@@ -85,9 +96,7 @@ public class Main {
         user.setLastName(readStringInput(keyboardInput));
         System.out.printf("%-20s", "Enter Password:");
         user.setPassword(readStringInput(keyboardInput));
-        System.out.printf("%-20s%n", "Select User Type");
-        System.out.printf("%-20s", "(Admin, User):");
-        user.setType(readStringInput(keyboardInput));
+        user.setType(readUserType(keyboardInput));
         System.out.println("USER UPDATED!");
     }
 
