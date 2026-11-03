@@ -55,6 +55,22 @@ public class Account {
         person.setLastName(lastName);
     }
 
+    public String getEmail() {
+        return person.getEmail();
+    }
+
+    public void setEmail(String email) {
+        person.setEmail(email);
+    }
+
+    public String getContact() {
+        return person.getContact();
+    }
+
+    public void setContact(String contact) {
+        person.setContact(contact);
+    }
+
     /**
      * Returns this Account's username
      *
