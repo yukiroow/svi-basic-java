@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class Main {
     static void main() {
+        User user = null;
         String tempFirstName, tempLastName, tempUsername, tempPassword;
         Scanner keyboardInput = new Scanner(System.in);
         while (true) {
@@ -14,6 +15,11 @@ public class Main {
                 case 2 -> {
                 }
                 case 3 -> {
+                    if(user == null) {
+                        System.out.println("Please create a User first!");
+                        continue;
+                    }
+                    printUserDetails(new User("Harry","Dominguez","yukiro1","qwerty"));
                 }
                 case 4 -> {
                     System.out.println("Bye bye!");
@@ -22,6 +28,14 @@ public class Main {
                 default -> System.out.println("Invalid entry! Please select the proper option from the menu (1-4).");
             }
         }
+    }
+
+    static void printUserDetails(User user) {
+        System.out.println("USER DETAILS");
+        System.out.printf("%-15s%s%n", "First Name:", user.getFirstName());
+        System.out.printf("%-15s%s%n", "Last Name:", user.getLastName());
+        System.out.printf("%-15s%s%n", "Username:", user.getUsername());
+        System.out.printf("%-15s%s%n", "Password:", user.getPassword());
     }
 
     static int readMenuOption(Scanner keyboardInput) {
